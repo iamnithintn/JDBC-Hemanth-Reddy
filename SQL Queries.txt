@@ -1,0 +1,26 @@
+1. Inserting data: insert into tableName values(v1,v2,v3...)
+
+2.Adding columns: alter table tableName add columns columnName dataTyype
+
+3. drop table: drop table Tablename
+
+4. truncate table: truncate table tableName
+
+5. drop column: alter table tableName drop columnName
+
+6. delete row: delete from tableName where column=value
+
+7. update data: update tableName set columnName = value where columnName(pk)=value
+
+8. add column between two columns: alter table tablename add column columnName dataType after columnName()
+
+9. get the rows nased on requirement: select * from tablename limit r1(initial position), rn(end position)
+
+10. output format:  (1) syso("%10s",s1);
+				  s---> means it is a string
+			       %10--> 10 white spaces
+				 s1--> the word
+
+
+	
+	

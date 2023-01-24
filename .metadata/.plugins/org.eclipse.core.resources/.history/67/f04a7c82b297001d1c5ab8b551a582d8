@@ -1,0 +1,21 @@
+package com.nithin;
+
+import java.sql.*;
+
+public class DeletingInJDBC {
+
+	public static void main(String[] args) {
+
+		Connection connection = null;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels");
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+
+	}
+}

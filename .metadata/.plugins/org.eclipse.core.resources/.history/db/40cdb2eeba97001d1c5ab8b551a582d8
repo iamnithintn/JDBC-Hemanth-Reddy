@@ -1,0 +1,94 @@
+package com.nithin;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class ReadingData {
+
+	void readSingleData(){
+
+		try {
+
+			Scanner scanner = new Scanner(System.in);
+
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdb","root","Settleinspain1@");
+
+			PreparedStatement pStatement = connection.prepareStatement("select * from sdb where id=?");
+
+			System.out.print("Enter id :");
+
+			int id = scanner.nextInt();
+
+			pStatement.setInt(1, id);
+
+			ResultSet resultset = pStatement.executeQuery();
+			System.out.printf("%10s%15s%15s%15s%15s", "ID","Name","Email","Phone","Branch");
+			System.out.println();
+
+			while(resultset.next()) {
+				System.out.printf("%10s%15s%15s%15s%15s", resultset.getInt(1), resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5));
+				System.out.println();
+
+			}
+
+			connection.close();
+			scanner.close();
+
+		} catch (ClassNotFoundException | SQLException  e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	void readMultipleData() {
+		
+		try {
+
+			Scanner scanner = new Scanner(System.in);
+
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdb","root","Settleinspain1@");
+
+			PreparedStatement pStatement = connection.prepareStatement("select * from sdb");
+
+			System.out.print("Enter id :");
+
+			int id = scanner.nextInt();
+
+			pStatement.setInt(1, id);
+
+			ResultSet resultset = pStatement.executeQuery();
+			System.out.printf("%10s%15s%15s%15s%15s", "ID","Name","Email","Phone","Branch");
+			System.out.println();
+
+			while(resultset.next()) {
+				System.out.printf("%10s%15s%15s%15s%15s", resultset.getInt(1), resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5));
+				System.out.println();
+
+			}
+
+			connection.close();
+			scanner.close();
+
+		} catch (ClassNotFoundException | SQLException  e) {
+			e.printStackTrace();
+		}
+
+
+	}
+
+	public static void main(String[] args) {
+
+		ReadingData rData = new ReadingData();
+
+		rData.readSingleData();
+
+	}
+}

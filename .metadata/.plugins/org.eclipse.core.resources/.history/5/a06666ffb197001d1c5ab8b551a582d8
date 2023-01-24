@@ -1,0 +1,12 @@
+package com.nithin;
+
+import java.sql.*;
+
+public class DeletingInJDBC {
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+}

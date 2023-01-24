@@ -1,0 +1,48 @@
+package com.nithin;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class AddingDataInJDBC {
+	
+	void addSingleEntry() {
+		
+		
+		
+		try {
+			Scanner scanner = new Scanner(System.in);
+			
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdb","root","Settleinspain1@");
+			
+			PreparedStatement pStatement = connection.prepareStatement("insert into sdb(name,email,phone,branch) values (?,?,?,?)");
+			
+			String name = scanner.nextLine();
+			String emailString = scanner.nextLine();
+			String phoString = scanner.nextLine();
+			String braString = scanner.nextLine();
+			
+			pStatement.setString(1, name);
+			pStatement.setString(2, emailString);
+			pStatement.setString(3, phoString);
+			pStatement.setString(4, braString);
+			
+			pStatement.execute();
+			System.out.println("Data Saved");
+			
+			connection.close();
+			scanner.close();
+			
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

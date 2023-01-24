@@ -1,0 +1,39 @@
+package com.nithin;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class ReadingData {
+
+	public static void main(String[] args) {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bike","root","Settleinspain1@");
+
+			PreparedStatement pStatement = connection.prepareStatement("select * from new_table where id=3");
+
+			ResultSet resultset = pStatement.executeQuery();
+
+			while(resultset.next()) {
+				Reader reader = resultset.getCharacterStream(3);
+				int c = reader.read();
+
+				while (c!=-1) {
+					System.out.print((char)c);
+					c=reader.read();
+				}
+			}
+
+			connection.close();
+
+		} catch (ClassNotFoundException | SQLException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

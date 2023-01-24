@@ -1,0 +1,38 @@
+package com.nithin;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class DeletingInJDBC {
+
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","Settleinspain1@");
+			
+			PreparedStatement pStatement =  connection.prepareStatement("delete from hotels.hotels where id=?");
+			System.out.println("Enter student ID");
+			int id = scanner.nextInt();
+			pStatement.setInt(1, id);
+			
+			pStatement.execute();
+			
+			connection.close();
+			
+			
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	scanner.close();
+
+	}
+}

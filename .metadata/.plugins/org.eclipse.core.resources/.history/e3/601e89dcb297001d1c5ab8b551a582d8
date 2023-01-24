@@ -1,0 +1,27 @@
+package com.nithin;
+
+import java.nio.channels.NonWritableChannelException;
+import java.sql.*;
+import java.util.Scanner;
+
+public class DeletingInJDBC {
+
+	public static void main(String[] args) {
+		Scanner scanner = new 
+		Connection connection = null;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","Settleinspain1@");
+			
+			PreparedStatement pStatement =  connection.prepareStatement("delete from hotels.hotels where id=?");
+			System.out.println("Enter student ID");
+			
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+
+	}
+}
